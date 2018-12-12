@@ -19,17 +19,23 @@ function pull_suburbs(m) {
       map_center.lng +
       "&y=" +
       map_center.lat +
-      "&max_results=30&radius=10000&geometry=true&with_field_names=true";
+      "&max_results=100" +
+      "&radius=" +
+      map_radius +
+      "&geometry=true&with_field_names=true";
   // fetch the geoJson data and draw the suburbs when they have been obtained
   d3.json(request_url).then(draw_suburbs);
 }
 
-function get_radius_from_bounds() {}
-var map_bounds = map.getBounds();
-var mapBoundNorthEast = map.getBounds().getNorthEast();
-var mapBoundSouthWest = map.getBounds().getSouthWest();
-var mapDistance = mapBoundNorthEast.distanceTo(mapBoundSouthWest);
-
+// determine the radious of the query to stats NZ
+function get_radius_from_bounds() {
+  var map_bounds = map.getBounds(),
+    map_distance = map.distance(map_bounds._southWest, map_bounds._northEast),
+    rounded_distance = Math.round(map_distance);
+  if (rounded_distance > 100000) rounded_distance = 100000;
+  console.log(rounded_distance);
+  return rounded_distance;
+}
 // draws features obtained from the API while checking that they have not been drawn before
 function draw_suburbs(data) {
   // data obtained from StatsNZ have a header with metainfo of the geoJson data this need to be removed before can be passed to other functions
