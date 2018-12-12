@@ -25,6 +25,10 @@ function pull_suburbs(m) {
 }
 
 function get_radius_from_bounds() {}
+var map_bounds = map.getBounds();
+var mapBoundNorthEast = map.getBounds().getNorthEast();
+var mapBoundSouthWest = map.getBounds().getSouthWest();
+var mapDistance = mapBoundNorthEast.distanceTo(mapBoundSouthWest);
 
 // draws features obtained from the API while checking that they have not been drawn before
 function draw_suburbs(data) {
@@ -60,7 +64,5 @@ function filter_geojson(geojson) {
   return geojson;
 }
 
-// Pull the suburbs everytime user moves the map, zooms in/out or the map is reloaded
+// Pull the suburbs everytime user moves the map, zooms in/out or the map
 map.on("moveend", pull_suburbs);
-map.on("zoomend", pull_suburbs);
-map.on("viewreset", pull_suburbs);
