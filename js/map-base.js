@@ -7,18 +7,28 @@ var map = L.map("map", {
 }).setView([-41.28666552, 174.772996908], 14);
 
 // Create a new layer for the map for the tiles
-L.tileLayer(
-  "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}",
-  {
-    attribution:
-      'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    subdomains: "abcd",
-    minZoom: 10, // zooms have been chosen match the ranges of suburb sizes
-    maxZoom: 17,
-    ext: "png"
-  }
-).addTo(map); // add the recently created layer to the blank map we created before
-// We have now a base map with tiles
+
+L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+  attribution:
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains: "abcd",
+  minZoom: 10, // zooms have been chosen match the ranges of suburb sizes
+  maxZoom: 17,
+  ext: "png"
+}).addTo(map); // add the recently created layer to the blank map we created before
+// We have now a base map with tiles;
+
+// L.tileLayer(
+//   "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}",
+//   {
+//     attribution:
+//       'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+//     subdomains: "abcd",
+//     minZoom: 10, // zooms have been chosen match the ranges of suburb sizes
+//     maxZoom: 17,
+//     ext: "png"
+//   }
+// );
 
 L.control
   .zoom({

@@ -15,15 +15,16 @@ svg {
 }
 
 path {
-  stroke-width: 1.5px;
-  fill: lightsalmon;
-  stroke: salmon;
+  stroke-width: 2.5px;
+  fill: #0095d9;
+  stroke: #0095d9;
+  opacity: 0.2;
 }
 
 @media (hover: hover) {
   path:hover {
-    fill: lightsalmon;
-    fill-opacity: 0.7;
+    fill: #0095d9;
+    fill-opacity: 0.5;
   }
 }
 
