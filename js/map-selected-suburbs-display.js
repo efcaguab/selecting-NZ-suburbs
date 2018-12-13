@@ -10,9 +10,11 @@ info.onAdd = function(map) {
 info.update = function() {
   if (selected_suburbs.length == 0) {
     text_display =
-      "Click to select the suburbs where is OK to live. Click again to unselect";
+      "Click to select the suburbs where is OK to live. Click again to unselect. Hit the paper plane when done.";
+    send_button.disable();
   } else {
     text_display = "You've selected: " + selected_suburbs.join(" \u00B7 ");
+    send_button.enable();
   }
   this._div.innerHTML = "<h4>MSD - Social housing</h4>" + text_display;
 };
