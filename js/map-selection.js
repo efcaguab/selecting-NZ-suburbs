@@ -1,9 +1,9 @@
 suburb_layer.on("click", select_unselect);
 
 var selected_style = {
-  fillColor: "darksalmon",
-  fillOpacity: 0.5,
-  strokeColor: "indianred"
+  fillColor: "#252c65",
+  fillOpacity: 1,
+  strokeColor: "#252c65"
 };
 
 var selected_suburbs = [];
