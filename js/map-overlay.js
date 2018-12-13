@@ -1,7 +1,11 @@
 // This file handles the display of suburbs layer in the map
 
+var default_style = {
+  fillOpacity: 0.2
+};
+
 // Define the url from which the suburbs will be obtained, we are using "Statistical Area 2 2018 clipped (generalised)". More information can be found at https://datafinder.stats.govt.nz/layer/92213-statistical-area-2-2018-clipped-generalised/
-var api_url =
+var root_api_url =
   "https://datafinder.stats.govt.nz/services/query/v1/vector.json?key=437b19e49aa74bebb8d272a32fd2264a&layer=92213";
 // Creates an empty layer to display geoJson data
 var suburb_layer = L.geoJson();
@@ -14,7 +18,7 @@ function pull_suburbs(m) {
     // construct the request address
     map_radius = get_radius_from_bounds(),
     request_url =
-      api_url +
+      root_api_url +
       "&x=" +
       map_center.lng +
       "&y=" +
@@ -33,7 +37,6 @@ function get_radius_from_bounds() {
     map_distance = map.distance(map_bounds._southWest, map_bounds._northEast),
     rounded_distance = Math.round(map_distance);
   if (rounded_distance > 100000) rounded_distance = 100000;
-  console.log(rounded_distance);
   return rounded_distance;
 }
 // draws features obtained from the API while checking that they have not been drawn before
@@ -50,7 +53,8 @@ function draw_suburbs(data) {
   // add the ids of the features to draw to the global list of drawn features
   loaded_suburbs_id = loaded_suburbs_id.concat(filtered_ids);
   // ada data to the geoJson layer in the map
-  suburb_layer = suburb_layer.addData(suburbs_json);
+  suburb_layer = suburb_layer.addData(filtered_suburbs_json);
+  // suburb_layer.setStyle(default_style);
   // redraw the geoJson layer
   suburb_layer = suburb_layer.addTo(map);
 }
